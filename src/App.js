@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from './Pages/Home'
-import Login from './Pages/Login'
-import ComplimentList from './Pages/ComplimentList'
-import UserList from './Pages/UserList'
+import Home from './pages/Home'
+import Login from './pages/Login'
+import ComplimentList from './pages/ComplimentList'
+import UserList from './pages/UserList'
 import './App.css';
 
 function App() {
