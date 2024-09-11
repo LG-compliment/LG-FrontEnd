@@ -13,9 +13,9 @@ const Btn = styled.button`
   
 `
 
-function Button(props) {
+function Button({children}) {
   return (
-    <Btn>{props.title}</Btn>
+    <Btn>{children}</Btn>
   )
 }
 

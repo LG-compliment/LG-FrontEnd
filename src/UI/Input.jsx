@@ -8,7 +8,7 @@ const InputText = styled.input`
   border:1px solid #D9D9D9;
   border-radius: 5px;
   padding-left: 10px;
-
+  box-shadow: 1px 1px 1px gray;
 `
 
 function Input(props) {
