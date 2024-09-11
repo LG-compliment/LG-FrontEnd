@@ -1,8 +1,16 @@
 import React from 'react'
+import styled from 'styled-components';
 
-function Input() {
+const InputText = styled.input`
+  width: 250px;
+  height: 34px; //default : border 2 padding 1 
+  margin-right: 5px;
+
+`
+
+function Input(props) {
   return (
-    <div>Input</div>
+    <InputText placeholder={props.placeholder}/>
   )
 }
 
