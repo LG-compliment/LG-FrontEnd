@@ -21,7 +21,7 @@ const UserTableContainer = styled.div`
   width: 30%;
   height: 60vh;
 `
-const UserTable = styled.div`
+const UserTableWrapper = styled.div`
   width: 100%;
   height: 100%;
   border:1px solid #D9D9D9;
@@ -86,4 +86,4 @@ const MyProfileImg = {
   padding : '10px'
 }
 
-export {UsersContainer, SearchArea, UserTableContainer, UserTable, UserTHead, UserTr, UserTBody,CompBtnDiv, UserName, Comment, MyProfileImg};
+export {UsersContainer, SearchArea, UserTableContainer, UserTableWrapper, UserTHead, UserTr, UserTBody,CompBtnDiv, UserName, Comment, MyProfileImg};
