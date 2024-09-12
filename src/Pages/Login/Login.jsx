@@ -33,9 +33,10 @@ function Login() {
       const result = await response.json();
 
       if (result.message === "OK") {
-        sessionStorage.setItem('token', result.token);
+        sessionStorage.setItem('token', result["data"]["token"]);
+        sessionStorage.setItem('userId', id);
         alert('로그인 성공');
-        window.location.href = '/compliment-list';
+        window.location.href = '/compliments';
       } else {
         alert('로그인 실패: ' + result.message || '서버에서 오류가 발생했습니다.');
       }

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import profileImg from '../images/profile.jpg'
+import { useNavigate } from 'react-router-dom';
 
 //#region :: styled-components
 
@@ -25,7 +26,7 @@ const MyLoginDiv = styled.div`
   justify-content: flex-end;
   align-items: center;
 `
-const InfoLink = styled.a`
+const InfoLink = styled.div`
     color : white;
     text-decoration: none; //태그 밑줄 없애기
     padding: 10px;
@@ -56,16 +57,23 @@ const MyProfileImg = {
 }
 
 function MyInfo({name}) { //로그인 정보에서 name get 
+  const navigate = useNavigate();
+  const logout = () => {
+    sessionStorage.removeItem("userId");
+    sessionStorage.removeItem("token");
+    navigate("/login");
+  }
+  
   return (
     <>
         <MyInfoContainer>
             <MyLoginDiv>
                 <InfoLink>마이페이지</InfoLink>
-                <InfoLink>로그아웃</InfoLink>
+                <InfoLink onClick={logout}>로그아웃</InfoLink>
             </MyLoginDiv>
             <MyInfoDiv>
                 <img src={profileImg} alt="profile" style={MyProfileImg} />
-                <NameInfo>{!name && '이민주'}님, 반갑습니다.</NameInfo>
+                <NameInfo>{name}님, 반갑습니다.</NameInfo>
             </MyInfoDiv>
         </MyInfoContainer>
     </>
