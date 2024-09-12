@@ -5,7 +5,7 @@ import profileImg from '../../images/profile.jpg'
 import {UsersContainer, SearchArea, UserTableContainer, UserTableWrapper, UserTHead, UserTr, UserTBody,CompBtnDiv, UserName, Comment, MyProfileImg, NoResult} from './UserStyle';
 
 
-function UserList(props) {
+function UserList() {
   const [searchName, setSearchName] = useState('') //검색 Input에 필요한 유저 이름
   const [userList, setUserList] = useState([]) //유저리스트
   const [filteredUsers, setFilteredUsers] = useState([]); // 필터링된 사용자 목록 상태
@@ -35,7 +35,7 @@ function UserList(props) {
 
   const handleSearch = async (e) =>{
     const filtered = userList.filter(user =>
-      user.name === searchName // 이름 필터링 (소문자로 변환하여 비교)
+      user.name === searchName 
     );
     setFilteredUsers(filtered); // 필터링된 목록 저장
   }
@@ -44,6 +44,10 @@ function UserList(props) {
   const handleChange = (event) => {
     const value = event.target.value;
     setSearchName(value); // 검색어 상태 업데이트
+    const filtered = userList.filter(user =>
+      user.name.includes(value) 
+    );
+    setFilteredUsers(filtered); // 필터링된 목록 저장
   };
 
 
