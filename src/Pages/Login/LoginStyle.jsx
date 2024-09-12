@@ -35,7 +35,7 @@ const LoginTitle = styled.div`
   word-wrap: break-word;
 `;
 
-const LoginForm = styled.form`;
+const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
