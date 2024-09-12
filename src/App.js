@@ -1,22 +1,31 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home'
-import Login from './pages/Login/Login'
-import ComplimentList from './pages/ComplimentList'
-import UserList from './pages/UserList'
+import Home from './pages/Home';
+import Login from './pages/Login/Login';
+import ComplimentList from './pages/ComplimentList';
+import UserList from './pages/UserList';
+import Header from './ui/Header'; 
 import './App.css';
 
 function App() {
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Home/>}></Route>
-        <Route path='/login' element={<Login/>}></Route>
-        <Route path='/compliments' element={<ComplimentList/>}></Route>
-        <Route path='/users' element={<UserList/>}></Route>
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="*"
+          element={
+            <>
+              <Header/> 
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/compliments" element={<ComplimentList />} />
+                <Route path="/users" element={<UserList />} />
+              </Routes>
+            </>
+          }
+        />
       </Routes>
     </BrowserRouter>
-    
   );
 }
 
