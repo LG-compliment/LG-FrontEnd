@@ -1,7 +1,4 @@
-import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import Input from '../ui/Input'
-import Button from '../ui/Button'
 
 // 전역 폰트 스타일 정의
 const GlobalStyle = createGlobalStyle`
@@ -47,23 +44,4 @@ const LoginForm = styled.form`;
   gap: 20px;
 `;
 
-function Login() {
-  return (
-    <>
-      <GlobalStyle />
-      <BackGround>
-        <LoginContainer>
-          <LoginTitle>COMPLIMENT</LoginTitle>
-          <LoginTitle>HUB</LoginTitle>
-          <LoginForm>
-            <Input placeholder="아이디를 입력해주세요" ></Input>
-            <Input placeholder="비밀번호를 입력해주세요"></Input>
-            <Button>로그인</Button>
-          </LoginForm>
-        </LoginContainer>
-      </BackGround>
-    </>
-  );
-}
-
-export default Login;
+export { GlobalStyle, BackGround, LoginContainer, LoginTitle, LoginForm };

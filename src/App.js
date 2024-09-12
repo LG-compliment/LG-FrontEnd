@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home'
-import Login from './pages/Login'
+import Login from './pages/Login/Login'
 import ComplimentList from './pages/ComplimentList'
 import UserList from './pages/UserList'
 import './App.css';
