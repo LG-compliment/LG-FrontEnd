@@ -1,95 +1,148 @@
-import React, { useState, useEffect } from 'react'
-import Button from '../../ui/Button';
-import Input from '../../ui/Input';
-import profileImg from '../../images/profile.jpg'
-import {UsersContainer, SearchArea, UserTableContainer, UserTableWrapper, UserTHead, UserTr, UserTBody,CompBtnDiv, UserName, Comment, MyProfileImg, NoResult} from './UserStyle';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
+const ComplimentContainer = styled.div`
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+`;
 
-function UserList() {
-  const [searchName, setSearchName] = useState('') //검색 Input에 필요한 유저 이름
-  const [userList, setUserList] = useState([]) //유저리스트
-  const [filteredUsers, setFilteredUsers] = useState([]); // 필터링된 사용자 목록 상태
-  const getUserList = async(e) =>{
-      try{
-          const response = await fetch('http://localhost:8080/users', {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization' : 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzI2MTAyNDg5LCJleHAiOjE3Mjk3MDI0ODl9.d96ydH1HDWCb0uNg6jlM9viW5L1M8Jz5oUV6I_9nLNICES6yBlhlwPccPnM9Hs2rMfIbqIUf-8KkQAg0DwJejA'
-              }
-          });
-          const result = await response.json();
+const SearchArea = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+`;
 
-          if(result.message === "OK"){
-              setUserList(result.data.users)
-              setFilteredUsers(result.data.users); // 초기에는 전체 사용자 목록을 필터링 목록에 저장
-          }
-      }catch(error){
-          console.log("데이터 조회 실패")
-      }
+const Input = styled.input`
+  flex-grow: 1;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px 0 0 4px;
+  font-size: 14px;
+  &:focus {
+    outline: none;
+    border-color: #e91e63;
   }
+`;
 
-  useEffect(()=>{
-      getUserList()
-  },[])
-
-  const handleSearch = async (e) =>{
-    const filtered = userList.filter(user =>
-      user.name === searchName 
-    );
-    setFilteredUsers(filtered); // 필터링된 목록 저장
+const SearchButton = styled.button`
+  padding: 12px 20px;
+  background-color: #e91e63;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: #d81b60;
   }
+`;
 
-  // 검색어에 따라 실시간으로 목록 필터링
-  const handleChange = (event) => {
-    const value = event.target.value;
-    setSearchName(value); // 검색어 상태 업데이트
-    const filtered = userList.filter(user =>
-      user.name.includes(value) 
-    );
-    setFilteredUsers(filtered); // 필터링된 목록 저장
-  };
+const QuestionText = styled.p`
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+`;
 
+const UserList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 20px;
+`;
+
+const UserItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+`;
+
+const Avatar = styled.div`
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #3498db;
+  margin-bottom: 10px;
+`;
+
+const UserName = styled.span`
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+`;
+
+const ComplimentButton = styled.button`
+  padding: 8px 15px;
+  background-color: #e91e63;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: #d81b60;
+  }
+`;
+
+const ComplimentUserList = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const dummyUsers = [
+    { id: 1, name: '3' },
+    { id: 2, name: 'www' },
+    { id: 3, name: 'John' },
+    { id: 4, name: 'Jane' },
+    { id: 5, name: 'Bob' },
+    { id: 6, name: 'Alice' },
+  ];
+
+  // 검색어에 따른 사용자 필터링
+  const filteredUsers = dummyUsers.filter((user) =>
+    user.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
-    <>
-      <UsersContainer>
-        <SearchArea>
-          <Input placeholder='검색어를 입력하세요' width='200px' 
-              value={searchName} 
-              onChange={handleChange}></Input>
-          <Button onClick={handleSearch}>검색</Button>
-        </SearchArea>
-        <UserTableContainer>
-            <Comment>어떤 구성원에게 칭찬 메시지를 보낼까요?</Comment>
-            <UserTableWrapper>
-                <UserTHead>
-                    <UserTr>
-                    </UserTr>
-                </UserTHead>
-                <UserTBody>
-                    {filteredUsers.length > 0 ? (
-                        filteredUsers.map((user, idx)=>{
-                            return(
-                                <UserTr key={idx}>
-                                    <img src={profileImg} alt="profile" style={MyProfileImg} />
-                                    <UserName>{user.name}</UserName>
-                                <CompBtnDiv>
-                                    <Button>칭찬하기</Button>
-                                </CompBtnDiv>
-                                </UserTr>
-                            )
-                        })
-                      ) : (
-                        <NoResult>검색 결과가 없습니다.</NoResult>
-                      )
-                    }
-                </UserTBody>
-            </UserTableWrapper>
-        </UserTableContainer>
-      </UsersContainer>
-    </>
-  )
-}
+    <ComplimentContainer>
+      <SearchArea>
+        <Input 
+          placeholder="검색어를 입력하세요" 
+          value={searchQuery} 
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <SearchButton onClick={() => {}}>검색</SearchButton> {/* 검색 버튼 클릭 시 별도의 액션 추가 가능 */}
+      </SearchArea>
+      <QuestionText>어떤 구성원에게 칭찬 메시지를 보낼까요?</QuestionText>
+      <UserList>
+        {filteredUsers.length > 0 ? (
+          filteredUsers.map((user) => (
+            <UserItem key={user.id}>
+              <Avatar />
+              <UserName>{user.name}</UserName>
+              <ComplimentButton>칭찬하기</ComplimentButton>
+            </UserItem>
+          ))
+        ) : (
+          <p>일치하는 사용자가 없습니다.</p>
+        )}
+      </UserList>
+    </ComplimentContainer>
+  );
+};
 
-export default UserList
+export default ComplimentUserList;
