@@ -1,100 +1,102 @@
 import styled from 'styled-components';
 
-//#region :: styled-components 
-const UsersContainer = styled.div`
+const ComplimentContainer = styled.div`
   width: 100%;
-  height: calc(100vh - 170px); //viewport heigth (해당 웹페이지를 실행하고 있는 기기의 화면 크기)
-  display: inline-flex;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+`;
+
+const SearchArea = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+`;
+
+const Input = styled.input`
+  flex-grow: 1;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px 0 0 4px;
+  font-size: 14px;
+  &:focus {
+    outline: none;
+    border-color: #e91e63;
+  }
+`;
+
+const SearchButton = styled.button`
+  padding: 12px 20px;
+  background-color: #e91e63;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: #d81b60;
+  }
+`;
+
+const QuestionText = styled.p`
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+`;
+
+const UserList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 20px;
+`;
+
+const UserItem = styled.div`
+  display: flex;
   flex-direction: column;
   align-items: center;
-
-`
-const SearchArea = styled.div`
-  width: 30%;
-  height: 10vh;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  
-`
-const UserTableContainer = styled.div`
-  width: 30%;
-  height: 60vh;
-`
-const UserTableWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  border:1px solid #D9D9D9;
-  
-`
-const UserTHead = styled.div`
-  background-color: #D9D9D9;
-  width: 100%;
-  height: 5%;
-
-`
-
-const UserTr = styled.div`
-  width: 100%;
-  height: 15%;
-  /* background-color: #D9D9D9; */
-  display: inline-flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`
-const CompBtnDiv = styled.div`
-  width: 40%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
-
-const UserTBody = styled.div`
-  width: 100%;
-  height: 95%;
-  overflow: auto;
-  ${UserTr} {
-    &:hover{
-      background-color: #f0f0f0;
-    }
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   }
-`
-const UserName = styled.div`
-  font-size: 20px;
+`;
+
+const Avatar = styled.div`
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #3498db;
+  margin-bottom: 10px;
+`;
+
+const UserName = styled.span`
+  font-size: 14px;
   font-weight: bold;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding-inline-start: 20px;
-`
+  text-align: center;
+  margin-bottom: 10px;
+`;
 
-const Comment = styled.span`
-  font-size: 10px;
-  color: #666666;
-`
+const ComplimentButton = styled.button`
+  padding: 8px 15px;
+  background-color: #e91e63;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: #d81b60;
+  }
+`;
 
-const NoResult = styled.div`
-  font-size: 20px;
-  font-weight: bold;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
-
-//#endregion
-
-//html style
-const MyProfileImg = {
-  width : '50px',
-  height : '50px',
-  borderRadius : '50%',
-  padding : '10px'
-}
-
-export {UsersContainer, SearchArea, UserTableContainer, UserTableWrapper, UserTHead, UserTr, UserTBody,CompBtnDiv, UserName, Comment, MyProfileImg, NoResult};
+export {ComplimentContainer, SearchArea, Input, SearchButton, QuestionText, UserList, UserItem, Avatar, UserName, ComplimentButton}
