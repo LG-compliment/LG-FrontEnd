@@ -76,6 +76,17 @@ const Comment = styled.span`
   font-size: 10px;
   color: #666666;
 `
+
+const NoResult = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
 //#endregion
 
 //html style
@@ -86,4 +97,4 @@ const MyProfileImg = {
   padding : '10px'
 }
 
-export {UsersContainer, SearchArea, UserTableContainer, UserTableWrapper, UserTHead, UserTr, UserTBody,CompBtnDiv, UserName, Comment, MyProfileImg};
+export {UsersContainer, SearchArea, UserTableContainer, UserTableWrapper, UserTHead, UserTr, UserTBody,CompBtnDiv, UserName, Comment, MyProfileImg, NoResult};
