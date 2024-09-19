@@ -28,7 +28,6 @@ function Login() {
         alert('로그인 성공');
         window.location.href = '/compliments';
       } else {
-        console.log(result.message);
         setError('로그인 실패: ' + (result.message || '서버에서 오류가 발생했습니다.'));
       }
     } catch (error) {
