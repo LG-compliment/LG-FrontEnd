@@ -28,11 +28,7 @@ api.interceptors.request.use(
 
 api.interceptors.response.use(
   (response) => {
-    const { status, message, data } = response.data;
-    if (status !== "200") {
-      return Promise.reject(new Error(message || "An error occurred"));
-    }
-    return data;
+    return response.data;
   },
   (error) => {
     return Promise.reject(error);

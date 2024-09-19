@@ -14,7 +14,7 @@ const ComplimentUserList = () => {
       try {
         setLoading(true);
         const usersData = await fetchUsers();
-        setUsers(usersData.users);
+        setUsers(usersData.data.users);
       } catch (err) {
         console.error('Error fetching user:', err);
         setError('사용자 정보를 불러오는데 실패했습니다.')
