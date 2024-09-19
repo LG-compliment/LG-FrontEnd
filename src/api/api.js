@@ -26,6 +26,19 @@ api.interceptors.request.use(
   }
 );
 
+api.interceptors.response.use(
+  (response) => {
+    const { status, message, data } = response.data;
+    if (status !== "200") {
+      return Promise.reject(new Error(message || "An error occurred"));
+    }
+    return data;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 // User API
 export const fetchUsers = () => api.get('/users'); // 유저 목록 가져오기
 export const fetchUser = (id) => api.get(`/users/${id}`); // 특정 유저 정보 가져오기

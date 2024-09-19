@@ -1,22 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {ComplimentContainer, SearchArea, Input, SearchButton, QuestionText, UserList, UserItem, Avatar, UserName, ComplimentButton} from "./UserStyle.jsx";
+import { fetchUsers } from '../../api/api.js';
 
 const ComplimentUserList = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
-  const dummyUsers = [
-    { id: 1, name: '3' },
-    { id: 2, name: 'www' },
-    { id: 3, name: 'John' },
-    { id: 4, name: 'Jane' },
-    { id: 5, name: 'Bob' },
-    { id: 6, name: 'Alice' },
-  ];
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const loadUser = async () => {
+      try {
+        setLoading(true);
+        const usersData = await fetchUsers();
+        setUsers(usersData.users);
+      } catch (err) {
+        console.error('Error fetching user:', err);
+        setError('사용자 정보를 불러오는데 실패했습니다.')
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadUser();
+  }, []);
 
   // 검색어에 따른 사용자 필터링
-  const filteredUsers = dummyUsers.filter((user) =>
+  const filteredUsers = users.filter((user) =>
     user.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  if (loading) return <div>로딩중</div>
+  if (error) return <div>{error}</div>
 
   return (
     <ComplimentContainer>
