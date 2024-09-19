@@ -13,7 +13,6 @@ const HeaderContainer = styled.nav`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  
 `;
   
 const Logo = styled.a`
@@ -58,7 +57,7 @@ const StyledNavLink = styled(NavLink)`
 
 const getServerData = async (navigate) => {
   const userId = sessionStorage.getItem("userId");
-  const token = sessionStorage.getItem("token");
+  const token = sessionStorage.getItem("authToken");
 
   // userId 또는 token이 없으면 로그인 페이지로 이동
   if (!userId || !token) {
@@ -103,7 +102,7 @@ function Header() {
         setUserName(data.data.name);
       }
     });
-  }, []);  // 주의: userName 대신 빈 배열을 의존성으로 설정 (첫 렌더링 때만 실행되도록)
+  }, [navigate]);  // 주의: userName 대신 빈 배열을 의존성으로 설정 (첫 렌더링 때만 실행되도록)
 
   return (
     <HeaderContainer>

@@ -33,7 +33,7 @@ function Login() {
       const result = await response.json();
 
       if (result.message === "OK") {
-        sessionStorage.setItem('token', result["data"]["token"]);
+        sessionStorage.setItem('authToken', result["data"]["token"]);
         sessionStorage.setItem('userId', id);
         alert('로그인 성공');
         window.location.href = '/compliments';
