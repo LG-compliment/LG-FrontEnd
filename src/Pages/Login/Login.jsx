@@ -22,7 +22,6 @@ function Login() {
       setLoading(true);
       setError(null);
       const result = await authenticateUser(id, password);
-      console.log(result);
       if (result.message === "OK") {
         sessionStorage.setItem('authToken', result.data.token);
         sessionStorage.setItem('userId', id);
@@ -33,7 +32,6 @@ function Login() {
         setError('로그인 실패: ' + (result.message || '서버에서 오류가 발생했습니다.'));
       }
     } catch (error) {
-      console.error('로그인 요청 중 오류 발생:', error);
       setError('로그인 실패: 네트워크 오류가 발생했습니다. 다시 시도해주세요.');
     } finally {
       setLoading(false);
