@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { fetchCompliments } from '../../api/api';
 
 const ComplimentContainer = styled.div`
   width: 100%;
@@ -90,22 +91,40 @@ const ComplimentList = () => {
   const [searchType, setSearchType] = useState('받은 유저');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const dummyData = [
-    { sender: '이민주', receiver: '고명진', message: '최선을 다하는 모습이 보기 좋습니다~!!' },
-    { sender: '이민주', receiver: '익명', message: '#칭찬합니다' },
-    { sender: '이민주', receiver: '익명', message: '' },
-    { sender: '이민주', receiver: '익명', message: '' },
-  ];
+  const [compliments, setCompliments] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const loadCompliements = async() => {
+      try {
+        setLoading(true);
+        const complimentsData = await fetchCompliments();
+        setCompliments(complimentsData.data.compliments);
+      } catch (err) {
+        console.error('Error fetching compliments:', err);
+        setError('칭찬 목록을 불러오는데 실패했습니다.')
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadCompliements();
+  }, []);
+
 
   // 검색 필터링 로직
-  const filteredData = dummyData.filter((item) => {
+  const filteredData = compliments.filter((item) => {
     if (searchType === '받은 유저') {
-      return item.receiver.toLowerCase().includes(searchQuery.toLowerCase());
+      return item.receiver.name.toLowerCase().includes(searchQuery.toLowerCase());
     } else if (searchType === '보낸 유저') {
-      return item.sender.toLowerCase().includes(searchQuery.toLowerCase());
+      return item.sender.name.toLowerCase().includes(searchQuery.toLowerCase());
     }
     return false;
   });
+
+  if (loading) return <div>로딩중</div>
+  if (error) return <div>{error}</div>
 
   return (
     <ComplimentContainer>
@@ -127,18 +146,18 @@ const ComplimentList = () => {
             <MessageItem key={index}>
               <AvatarContainer>
                 <Avatar />
-                <SenderName>{item.sender}</SenderName>
+                <SenderName>{item.sender.name}</SenderName>
               </AvatarContainer>
               <MessageContent>
-                <ReceiverName>{item.receiver}</ReceiverName>
-                <MessageText>{item.message}</MessageText>
+                <ReceiverName>{item.receiver.name}</ReceiverName>
+                <MessageText>{item.content}</MessageText>
               </MessageContent>
             </MessageItem>
           ))
         ) : (
           <p>일치하는 결과가 없습니다.</p>
         )}
-      </MessageList>
+    </MessageList>
     </ComplimentContainer>
   );
 };
