@@ -16,17 +16,6 @@ const SearchArea = styled.div`
   margin-bottom: 20px;
 `;
 
-const Input = styled.input`
-  flex-grow: 1;
-  padding: 12px;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px 0 0 4px;
-  font-size: 14px;
-  &:focus {
-    outline: none;
-    border-color: #e91e63;
-  }
-`;
 
 const SearchButton = styled.button`
   padding: 12px 20px;
@@ -85,18 +74,5 @@ const UserName = styled.span`
   margin-bottom: 10px;
 `;
 
-const ComplimentButton = styled.button`
-  padding: 8px 15px;
-  background-color: #e91e63;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 12px;
-  transition: background-color 0.3s;
-  &:hover {
-    background-color: #d81b60;
-  }
-`;
 
-export {ComplimentContainer, SearchArea, Input, SearchButton, QuestionText, UserList, UserItem, Avatar, UserName, ComplimentButton}
+export {ComplimentContainer, SearchArea,  SearchButton, QuestionText, UserList, UserItem, Avatar, UserName}
