@@ -149,7 +149,7 @@ const Modal = ({ isOpen, closeModal, selectedUser }) => {
 
   const handleTagChange = (e) => {
     setSelectedTag(e.target.value);
-    setMessage('') //text 초기화
+    setMessage(e.target.value) //text에 같이 반영
   };
 
   const handleTextChange = (e) => {
@@ -168,7 +168,7 @@ const Modal = ({ isOpen, closeModal, selectedUser }) => {
   const sendComplimentMessage = async () => {
     const receiverId = selectedUser.id; //받는사람
     const senderId = sessionStorage.getItem("userId"); //보내는 사람
-    const content = (!selectedTag) ? message : selectedTag; //드롭다운 값과 텍스트 중 값이 있는 것을 보냄
+    const content = message;
     //오늘 날짜 : 'YYYY-MM-DD'
     const createdAt = `${today.getFullYear()}-${(today.getMonth()+1) < 10 ? "0" + (today.getMonth()+1) : (today.getMonth()+1)}-${today.getDate()}`;
     try{
