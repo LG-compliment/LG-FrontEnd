@@ -43,3 +43,5 @@ export const fetchCompliments = () => api.get('/compliments'); // 칭찬 목록 
 
 // Compliment API
 export const createCompliment = (compliment) => api.post('/compliments', compliment);
+export const fetchSenderArchievement = () => api.get('/achievements/monthly-senders')
+export const fetchReceiverArchievement = () => api.get('/achievements/monthly-receivers')
