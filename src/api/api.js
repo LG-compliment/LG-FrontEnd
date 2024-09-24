@@ -39,5 +39,6 @@ api.interceptors.response.use(
 export const fetchUsers = () => api.get('/users'); // 유저 목록 가져오기
 export const fetchUser = (id) => api.get(`/users/${id}`); // 특정 유저 정보 가져오기
 export const authenticateUser = (id, password) => api.post('/users/login', { id, password }); // 로그인 
+export const fetchCompliments = () => api.get('/compliments'); // 칭찬 목록 가져오기
 
 // Compliment API
