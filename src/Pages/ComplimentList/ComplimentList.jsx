@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import Input from '../../ui/Input';
+import Button from '../../ui/Button';
+import ComplimentDetail from './ComplimentDetail';
 import { fetchCompliments } from '../../api/api';
 
 const ComplimentContainer = styled.div`
@@ -20,23 +23,6 @@ const Select = styled.select`
   border: 1px solid #ccc;
   border-radius: 4px;
   background-color: white;
-  cursor: pointer;
-`;
-
-const Input = styled.input`
-  flex-grow: 1;
-  margin: 0 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-`;
-
-const SearchButton = styled.button`
-  padding: 10px 20px;
-  background-color: #e91e63;
-  color: white;
-  border: none;
-  border-radius: 4px;
   cursor: pointer;
 `;
 
@@ -95,6 +81,19 @@ const ComplimentList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const [selectItem, setSelectItem] = useState(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  
+  const openModal = (item) => {
+    setSelectItem(item)
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectItem('')
+    setIsModalOpen(false);
+  };
+
   useEffect(() => {
     const loadCompliements = async() => {
       try {
@@ -134,11 +133,12 @@ const ComplimentList = () => {
           <option>보낸 유저</option>
         </Select>
         <Input 
+          width='600px'
           placeholder="유저 이름을 검색" 
           value={searchQuery} 
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <SearchButton>검색</SearchButton>
+        <Button>검색</Button>
       </SearchArea>
       <MessageList>
         {filteredData.length > 0 ? (
@@ -148,7 +148,7 @@ const ComplimentList = () => {
                 <Avatar />
                 <SenderName>{item.sender.name}</SenderName>
               </AvatarContainer>
-              <MessageContent>
+              <MessageContent onClick={()=>openModal(item)}>
                 <ReceiverName>{item.receiver.name}</ReceiverName>
                 <MessageText>{item.content}</MessageText>
               </MessageContent>
@@ -158,6 +158,8 @@ const ComplimentList = () => {
           <p>일치하는 결과가 없습니다.</p>
         )}
     </MessageList>
+    <ComplimentDetail isOpen={isModalOpen} closeModal={closeModal} selectItem={selectItem}>
+    </ComplimentDetail>
     </ComplimentContainer>
   );
 };
