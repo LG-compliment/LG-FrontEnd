@@ -42,3 +42,4 @@ export const authenticateUser = (id, password) => api.post('/users/login', { id,
 export const fetchCompliments = () => api.get('/compliments'); // 칭찬 목록 가져오기
 
 // Compliment API
+export const createCompliment = (compliment) => api.post('/compliments', compliment);
