@@ -15,7 +15,6 @@ const ComplimentContainer = styled.div`
   background-size: 200% 200%;
   animation: ${gradientAnimation} 10s ease infinite;
   min-height: calc(100vh - 170px);
-  padding: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -198,8 +197,8 @@ const ComplimentList = () => {
     return false;
   });
 
-  if (loading) return <div>로딩중</div>;
-  if (error) return <div>{error}</div>;
+  if (loading) return <ComplimentContainer><Title>로딩중...</Title></ComplimentContainer>;
+  if (error) return <ComplimentContainer>{error}</ComplimentContainer>;
 
   return (
     <ComplimentContainer>

@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import {ComplimentContainer, SearchArea, QuestionText, UserList, UserItem, Avatar, UserName} from "./UserStyle.jsx";
+import { Search, User } from 'lucide-react';
 import { fetchUsers } from '../../api/api.js';
 import Modal from '../../ui/Modal.jsx';
+import {ComplimentContainer, Title, SearchArea, Input, SearchButton, UserList, UserItem, UserName, Avatar} from './UserStyle.jsx'
 import Button from '../../ui/Button.jsx';
-import Input from '../../ui/Input.jsx';
 
 const ComplimentUserList = () => {
   const [searchQuery, setSearchQuery] = useState('');
-
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
   const openModal = (user) => {
     setSelectedUser(user);
@@ -25,56 +24,61 @@ const ComplimentUserList = () => {
   };
 
   useEffect(() => {
-    const loadUser = async () => {
+    const loadUsers = async () => {
       try {
         setLoading(true);
         const usersData = await fetchUsers();
         setUsers(usersData.data.users);
       } catch (err) {
-        console.error('Error fetching user:', err);
-        setError('사용자 정보를 불러오는데 실패했습니다.')
+        console.error('Error fetching users:', err);
+        setError('사용자 정보를 불러오는데 실패했습니다.');
       } finally {
         setLoading(false);
       }
     };
 
-    loadUser();
+    loadUsers();
   }, []);
 
-  // 검색어에 따른 사용자 필터링
   const filteredUsers = users.filter((user) =>
     user.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  if (loading) return <div>로딩중</div>
-  if (error) return <div>{error}</div>
+  if (loading) return <ComplimentContainer><Title>로딩중...</Title></ComplimentContainer>;
+  if (error) return <ComplimentContainer><Title>{error}</Title></ComplimentContainer>;
 
   return (
     <ComplimentContainer>
+      <Title>💖 User List 💖</Title>
       <SearchArea>
         <Input 
-          width='600px'
-          placeholder="검색어를 입력하세요" 
+          placeholder="유저 이름을 검색" 
           value={searchQuery} 
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <Button onClick={() => {}}>검색</Button> {/* 검색 버튼 클릭 시 별도의 액션 추가 가능 */}
+        <SearchButton>
+          <Search size={20} />
+        </SearchButton>
       </SearchArea>
-      <QuestionText>어떤 구성원에게 칭찬 메시지를 보낼까요?</QuestionText>
       <UserList>
         {filteredUsers.length > 0 ? (
           filteredUsers.map((user) => (
             <UserItem key={user.id}>
-              <Avatar />
+              <Avatar>
+                <User size={40} color="white" />
+              </Avatar>
               <UserName>{user.name}</UserName>
-              <Button onClick={()=>openModal(user)}>칭찬하기</Button>
+              <Button onClick={() => openModal(user)}>칭찬하기</Button>
             </UserItem>
           ))
         ) : (
-          <p>일치하는 사용자가 없습니다.</p>
+          <UserItem>
+            <UserName>일치하는 사용자가 없습니다.</UserName>
+          </UserItem>
         )}
       </UserList>
       <Modal isOpen={isModalOpen} closeModal={closeModal} selectedUser={selectedUser}>
+        {/* Modal content here */}
       </Modal>
     </ComplimentContainer>
   );
