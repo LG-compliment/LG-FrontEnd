@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Search, User } from 'lucide-react';
 import { fetchUsers } from '../../api/api.js';
 import Modal from '../../ui/Modal.jsx';
-import {ComplimentContainer, Title, SearchArea, Input, SearchButton, UserList, UserItem, UserName, Avatar} from './UserStyle.jsx'
+import {ComplimentContainer, Title, SearchArea, Input, SearchButton, UserList, UserItem, UserName, Avatar,DisableButton} from './UserStyle.jsx'
 import Button from '../../ui/Button.jsx';
 
 const ComplimentUserList = () => {
@@ -12,7 +12,8 @@ const ComplimentUserList = () => {
   const [error, setError] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
+
+
   const openModal = (user) => {
     setSelectedUser(user);
     setIsModalOpen(true);
@@ -68,7 +69,10 @@ const ComplimentUserList = () => {
                 <User size={40} color="white" />
               </Avatar>
               <UserName>{user.name}</UserName>
-              <Button onClick={() => openModal(user)}>칭찬하기</Button>
+              {user.id === sessionStorage.getItem("userId")? 
+                <DisableButton>칭찬하기</DisableButton> : 
+                <Button onClick={() =>openModal(user)}>칭찬하기</Button>
+              }
             </UserItem>
           ))
         ) : (
