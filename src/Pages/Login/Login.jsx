@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { authenticateUser } from '../../api/api.js';
 import Input from '../../ui/Input';
 import Button from '../../ui/Button';
+import { Heart, HeartHandshake } from 'lucide-react';
 import { GlobalStyle, BackGround, LoginContainer, LoginTitle, LoginForm } from './LoginStyle.jsx';
 
 function Login() {
@@ -59,7 +60,8 @@ function Login() {
               disabled={loading}
             />
             <Button type="submit" onClick={handleLogin} disabled={loading}>
-              {loading ? '로그인 중...' : '로그인'}
+              {/* {loading ? '로그인 중...' : '로그인'} */}
+              {loading ? <HeartHandshake></HeartHandshake> : <Heart></Heart>}
             </Button>
             {error && <p style={{ color: 'red' }}>{error}</p>}
           </LoginForm>

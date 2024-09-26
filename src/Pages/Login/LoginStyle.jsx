@@ -22,6 +22,7 @@ const LoginContainer = styled.div`
   border: 1px solid #D9D9D9;
   width: 600px;
   height: 600px;
+  border-radius: 30px;
 `;
 
 const LoginTitle = styled.div`

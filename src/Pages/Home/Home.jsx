@@ -26,7 +26,6 @@ const HomeContainer = styled.div`
   background-size: 200% 200%;
   animation: ${gradientAnimation} 10s ease infinite;
   min-height: calc(100vh - 170px);
-  padding: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,7 +54,7 @@ const RankingBox = styled.div`
   width: 45%;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-
+  margin-inline: 10px;
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
@@ -164,8 +163,8 @@ const Home = () => {
         loadArchievment();
     }, [])
 
-    if (loading) return <div>로딩중</div>
-    if (error) return <div>{error}</div>
+    if (loading) return <HomeContainer><Title>로딩중...</Title></HomeContainer>
+    if (error) return <HomeContainer><Title>{error}</Title></HomeContainer>
 
   return (
     <HomeContainer>
