@@ -226,7 +226,7 @@ const ComplimentList = () => {
                 <Avatar>
                   <User size={30} color="white" />
                 </Avatar>
-                <SenderName>{item.sender.name}</SenderName>
+                <SenderName>{item.sender === undefined ? "익명" : item.sender.name}</SenderName>
               </AvatarContainer>
               <MessageContent onClick={()=>openModal(item)}>
                 <ReceiverName>To: {item.receiver.name}</ReceiverName>
