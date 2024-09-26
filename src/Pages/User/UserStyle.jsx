@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import Button from '../../ui/Button';
 
 const gradientAnimation = keyframes`
   0% { background-position: 0% 50%; }
@@ -61,7 +62,7 @@ const SearchButton = styled.button`
 const UserList = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
   max-width: 800px;
 `;
@@ -104,19 +105,12 @@ const UserName = styled.span`
   text-align: center;
 `;
 
-const ComplimentButton = styled.button`
-  padding: 10px 20px;
-  background-color: #EB008B;
+
+const DisableButton = styled(Button)`
+  background-color: #aaa;
   color: white;
   border: none;
-  border-radius: 20px;
   cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: #C9007A;
-  }
 `;
 
-export {ComplimentContainer, Title, SearchArea, Input, SearchButton, UserList, UserItem, UserName, Avatar, ComplimentButton}
+export {ComplimentContainer, Title, SearchArea, Input, SearchButton, UserList, UserItem, UserName, Avatar, DisableButton}
