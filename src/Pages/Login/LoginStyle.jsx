@@ -45,4 +45,16 @@ const LoginForm = styled.form`
   gap: 20px;
 `;
 
-export { GlobalStyle, BackGround, LoginContainer, LoginTitle, LoginForm };
+const Signup = styled.a`
+  font-size: 12px;
+  color : #EB008B;
+  font-weight: bold;
+  text-decoration: none; //태그 밑줄 없애기
+  text-align: center;
+  align-content: center;
+  display: flex;
+  padding: 40px;
+  justify-content: center;
+`
+
+export { GlobalStyle, BackGround, LoginContainer, LoginTitle, LoginForm, Signup };
