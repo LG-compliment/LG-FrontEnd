@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { createGlobalStyle } from 'styled-components';
 import Input from '../../ui/Input';
 import Button from '../../ui/Button';
-import { CircleArrowLeft } from 'lucide-react';
+import { CircleArrowLeft, ShieldCheck } from 'lucide-react';
 
 // 전역 폰트 스타일 정의
 const GlobalStyle = createGlobalStyle`
@@ -69,10 +69,29 @@ const SignUpButton = styled(Button)`
     }
 `
 
-const Icon = styled(CircleArrowLeft)`
+const BackIcon = styled(CircleArrowLeft)`
     color: #D9D9D9;
     align-self: flex-start;
     margin: 20px;
+`
+const CheckBtn = styled(Button)`
+    &:hover {
+        background-color: #d10079;
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+    width: 40px;
+`
+
+const ItemWrapper = styled.div`
+    display: flex;
+    align-items: center;
+`
+
+const InputCustom = styled(Input)`
+    align-self: flex-start;
 `
 
 function SignUp() {
@@ -84,23 +103,31 @@ function SignUp() {
             <GlobalStyle />
             <BackGround>
                 <SignUpContainer>
-                    <Icon onClick={clickBack}></Icon>
+                    <BackIcon onClick={clickBack}></BackIcon>
                     <SignUpTitle>Sign Up</SignUpTitle>
                     <SignUpForm>
                         <ItemTitle>아이디</ItemTitle>
-                        <Input 
-                            placeholder="아이디를 입력해주세요" 
-                            
-                        />
+                        <ItemWrapper>
+                            <InputCustom 
+                                placeholder="아이디를 입력해주세요" 
+                                
+                            />
+                            <CheckBtn><ShieldCheck size={20}></ShieldCheck></CheckBtn>
+                        </ItemWrapper>
                         <ItemTitle>이름</ItemTitle>
-                        <Input 
+                        <InputCustom 
                             placeholder="이름을 입력해주세요" 
                             
                         />
                         <ItemTitle>비밀번호</ItemTitle>
-                        <Input 
+                        <InputCustom 
                             type="password"
                             placeholder="비밀번호를 입력해주세요" 
+                            
+                        />
+                        <InputCustom 
+                            type="password"
+                            placeholder="비밀번호를 한번 더 입력해주세요" 
                             
                         />
                         <SignUpButton>회원가입</SignUpButton>   
