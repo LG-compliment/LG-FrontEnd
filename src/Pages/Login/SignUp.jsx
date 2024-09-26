@@ -2,6 +2,7 @@ import React from 'react'
 import styled, { createGlobalStyle } from 'styled-components';
 import Input from '../../ui/Input';
 import Button from '../../ui/Button';
+import { CircleArrowLeft } from 'lucide-react';
 
 // 전역 폰트 스타일 정의
 const GlobalStyle = createGlobalStyle`
@@ -21,7 +22,7 @@ const BackGround = styled.div`
 const SignUpContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: white;
   border: 1px solid #D9D9D9;
   width: 600px;
@@ -68,12 +69,22 @@ const SignUpButton = styled(Button)`
     }
 `
 
+const Icon = styled(CircleArrowLeft)`
+    color: #D9D9D9;
+    align-self: flex-start;
+    margin: 20px;
+`
+
 function SignUp() {
+    const clickBack = ()=>{
+        window.location.href = '/login';
+    }
     return (
         <>
             <GlobalStyle />
             <BackGround>
                 <SignUpContainer>
+                    <Icon onClick={clickBack}></Icon>
                     <SignUpTitle>Sign Up</SignUpTitle>
                     <SignUpForm>
                         <ItemTitle>아이디</ItemTitle>

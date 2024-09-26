@@ -3,7 +3,7 @@ import { authenticateUser } from '../../api/api.js';
 import Input from '../../ui/Input';
 import Button from '../../ui/Button';
 import { Heart, HeartHandshake } from 'lucide-react';
-import { GlobalStyle, BackGround, LoginContainer, LoginTitle, LoginForm } from './LoginStyle.jsx';
+import { GlobalStyle, BackGround, LoginContainer, LoginTitle, LoginForm, Signup } from './LoginStyle.jsx';
 
 function Login() {
   const [id, setId] = useState('');
@@ -65,6 +65,7 @@ function Login() {
             </Button>
             {error && <p style={{ color: 'red' }}>{error}</p>}
           </LoginForm>
+          <Signup href='/sign-up'>회원가입</Signup>
         </LoginContainer>
       </BackGround>
     </>
