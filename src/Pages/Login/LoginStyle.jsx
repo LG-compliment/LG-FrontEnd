@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle, keyframes } from 'styled-components';
 
 // 전역 폰트 스타일 정의
 const GlobalStyle = createGlobalStyle`
@@ -57,4 +57,26 @@ const Signup = styled.a`
   justify-content: center;
 `
 
-export { GlobalStyle, BackGround, LoginContainer, LoginTitle, LoginForm, Signup };
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const ErrorMessage = styled.div`
+  color: #ff6b6b;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  text-align: center;
+  min-height: 20px;
+  visibility: ${props => props.visible ? 'visible' : 'hidden'};
+  animation: ${fadeIn} 0.3s ease-in-out;
+`;
+
+
+export { GlobalStyle, BackGround, LoginContainer, LoginTitle, LoginForm, Signup, ErrorMessage};

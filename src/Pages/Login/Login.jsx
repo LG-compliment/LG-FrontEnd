@@ -3,7 +3,7 @@ import { authenticateUser } from '../../api/api.js';
 import Input from '../../ui/Input';
 import Button from '../../ui/Button';
 import { Heart, HeartHandshake } from 'lucide-react';
-import { GlobalStyle, BackGround, LoginContainer, LoginTitle, LoginForm, Signup } from './LoginStyle.jsx';
+import { GlobalStyle, BackGround, LoginContainer, LoginTitle, LoginForm, Signup, ErrorMessage } from './LoginStyle.jsx';
 
 function Login() {
   const [id, setId] = useState('');
@@ -15,7 +15,7 @@ function Login() {
     e.preventDefault();
 
     if (id === '' || password === '') {
-      alert('아이디와 비밀번호를 입력해주세요');
+      setError('아이디와 비밀번호를 입력해주세요');
       return;
     }
 
@@ -62,10 +62,11 @@ function Login() {
               disabled={loading}
             />
             <Button type="submit" onClick={handleLogin} disabled={loading}>
-              {/* {loading ? '로그인 중...' : '로그인'} */}
-              {loading ? <HeartHandshake></HeartHandshake> : <Heart></Heart>}
+              {loading ? <HeartHandshake /> : <Heart />}
             </Button>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+            <ErrorMessage visible={error !== null}>
+              {error}
+            </ErrorMessage>
           </LoginForm>
           <Signup href='/sign-up'>회원가입</Signup>
         </LoginContainer>
