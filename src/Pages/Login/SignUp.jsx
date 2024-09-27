@@ -278,7 +278,7 @@ function SignUp() {
             return;
         }
         try {
-            const response = await signUp(id, password, name);
+            await signUp(id, password, name);
             alert('회원가입이 완료되었습니다!');
             window.location.href = '/login';  // 로그인 페이지로 리다이렉트
         } catch (error) {
