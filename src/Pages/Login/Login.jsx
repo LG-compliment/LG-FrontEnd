@@ -64,7 +64,7 @@ function Login() {
             <Button type="submit" onClick={handleLogin} disabled={loading}>
               {loading ? <HeartHandshake /> : <Heart />}
             </Button>
-            <ErrorMessage visible={error !== null}>
+            <ErrorMessage visible={error !== null ? 'true' : 'false'}>
               {error}
             </ErrorMessage>
           </LoginForm>
