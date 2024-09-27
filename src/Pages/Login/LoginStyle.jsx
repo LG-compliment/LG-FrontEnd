@@ -53,7 +53,7 @@ const Signup = styled.a`
   text-align: center;
   align-content: center;
   display: flex;
-  padding: 40px;
+  padding: 10px;
   justify-content: center;
 `
 

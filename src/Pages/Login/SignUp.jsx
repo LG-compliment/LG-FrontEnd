@@ -217,7 +217,7 @@ function SignUp() {
     }
 
     const validateId = (id) => { 
-        const idPattern = /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{4,12}$/; // 영문 대소문자와 숫자를 모두 포함해야 함, 4~12자
+        const idPattern = /^(?=.*[a-zA-Z])[a-zA-Z0-9]{4,20}$/; // 영문 대소문자와 숫자를 사용해야 함, 4~20자
         return idPattern.test(id);
     };
     const validateName = (name) => {
@@ -303,7 +303,7 @@ function SignUp() {
                             />
                             {/* 툴팁 */}
                             <InfoTooltip $isVisible={isIdTooltipVisible}>
-                                아이디는 영문 대소문자와 숫자를 모두 포함해야 하며, 길이는 4~12자여야 합니다.
+                                아이디는 영문 대소문자와 숫자를 사용해야 하며, 길이는 4~20자여야 합니다.
                             </InfoTooltip>
                         </ItemTitle>
                         <ItemContainer>
