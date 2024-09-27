@@ -79,11 +79,11 @@ const BackIcon = styled(CircleArrowLeft)`
 `
 
 const CheckBtn = styled(({ isavailable, isChecked, ...rest }) => <Button {...rest} />)`
-  background-color: ${props => props.isChecked ? '#4CAF50' : props.isavailable ? '#FF4136' : '#EB008B'};
+  background-color: ${props => props.isavailable && props.isChecked ? '#4CAF50' : props.isChecked ? '#FF4136' : '#EB008B'};
   width: 40px;
   height: 40px;
   &:hover {
-    background-color: ${props => props.isChecked ? '#4CAF50' : props.isavailable ? '#FF4136' : '#d10079'};
+    background-color: ${props => props.isavailable && props.isChecked ? '#4CAF50' : props.isChecked ? '#FF4136' : '#d10079'};
   }
 
   &:active {
