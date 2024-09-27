@@ -56,6 +56,7 @@ const ProfileImage = styled.img`
   height: 50px;
   border-radius: 50%;
   background-color: #ddd;
+  border: 1px solid #d9d9d9;
 `;
 
 // Name and date
@@ -114,7 +115,7 @@ function ComplimentDetail({ isOpen, closeModal ,selectItem }) {
             <ProfileSection>
             <ProfileImage src={profileImg} alt="Profile" />
             <div>
-                <ProfileName>{selectItem.sender.name}</ProfileName>
+                <ProfileName>{selectItem.sender === undefined ? "익명" :selectItem.sender.name}</ProfileName>
                 <ProfileDate>{selectItem.createAt}</ProfileDate>
             </div>
             </ProfileSection>
