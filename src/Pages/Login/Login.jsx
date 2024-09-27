@@ -3,7 +3,7 @@ import { authenticateUser } from '../../api/api.js';
 import Input from '../../ui/Input';
 import Button from '../../ui/Button';
 import { Heart, HeartHandshake } from 'lucide-react';
-import { GlobalStyle, BackGround, LoginContainer, LoginTitle, LoginForm, Signup } from './LoginStyle.jsx';
+import { GlobalStyle, BackGround, LoginContainer, LoginTitle, LoginForm, Signup, ErrorMessage } from './LoginStyle.jsx';
 
 function Login() {
   const [id, setId] = useState('');
@@ -15,7 +15,7 @@ function Login() {
     e.preventDefault();
 
     if (id === '' || password === '') {
-      alert('아이디와 비밀번호를 입력해주세요');
+      setError('아이디와 비밀번호를 입력해주세요');
       return;
     }
 
@@ -32,7 +32,9 @@ function Login() {
         setError('로그인 실패: ' + (result.message || '서버에서 오류가 발생했습니다.'));
       }
     } catch (error) {
-      setError('로그인 실패: 네트워크 오류가 발생했습니다. 다시 시도해주세요.');
+      if (error.status === 401) {
+        setError('로그인 실패: 아이디 또는 비밀번호를 확인 해주세요');
+      }
     } finally {
       setLoading(false);
     }
@@ -60,10 +62,11 @@ function Login() {
               disabled={loading}
             />
             <Button type="submit" onClick={handleLogin} disabled={loading}>
-              {/* {loading ? '로그인 중...' : '로그인'} */}
-              {loading ? <HeartHandshake></HeartHandshake> : <Heart></Heart>}
+              {loading ? <HeartHandshake /> : <Heart />}
             </Button>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+            <ErrorMessage visible={error !== null ? 'true' : 'false'}>
+              {error}
+            </ErrorMessage>
           </LoginForm>
           <Signup href='/sign-up'>회원가입</Signup>
         </LoginContainer>
