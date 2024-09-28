@@ -1,11 +1,11 @@
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home/Home';
-import Login from './pages/Login/Login';
-import ComplimentList from './pages/ComplimentList/ComplimentList';
-import UserList from './pages/User/UserList';
+import Home from './pages/Home/Home.jsx';
+import Login from './pages/Login/Login.jsx';
+import ComplimentList from './pages/ComplimentList/ComplimentList.jsx';
+import UserList from './pages/User/UserList.jsx';
 import Header from './ui/Header'; 
 import './App.css';
-import SignUp from './pages/Login/SignUp';
+import SignUp from './pages/Login/SignUp.jsx';
 
 function App() {
   return (
