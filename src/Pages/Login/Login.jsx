@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { authenticateUser } from '../../api/api.js';
-import Input from '../../ui/Input.jsx';
-import Button from '../../ui/Button.jsx';
+import Input from '../../UI/Input.jsx';
+import Button from '../../UI/Button.jsx';
 import { Heart, HeartHandshake } from 'lucide-react';
 import { GlobalStyle, BackGround, LoginContainer, LoginTitle, LoginForm, Signup, ErrorMessage } from './LoginStyle.jsx';
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled, { createGlobalStyle, css, keyframes } from 'styled-components';
-import Input from '../../ui/Input';
-import Button from '../../ui/Button';
+import Input from '../../UI/Input';
+import Button from '../../UI/Button';
 import { CircleArrowLeft, ShieldCheck, Info } from 'lucide-react';
 import { checkId, signUp } from '../../api/api';
 

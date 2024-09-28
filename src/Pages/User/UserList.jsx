@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Search, User } from 'lucide-react';
 import { fetchUsers } from '../../api/api.js';
-import Modal from '../../ui/Modal.jsx';
+import Modal from '../../UI/Modal.jsx';
 import {ComplimentContainer, Title, SearchArea, Input, SearchButton, UserList, UserItem, UserName, Avatar,DisableButton} from './UserStyle.jsx'
-import Button from '../../ui/Button.jsx';
+import Button from '../../UI/Button.jsx';
 
 const ComplimentUserList = () => {
   const [searchQuery, setSearchQuery] = useState('');
