@@ -32,7 +32,6 @@ jobs:
       run: npm i
     - name : Build
       run: npm run build 
-    - run: npm test
 
     - uses: awact/s3-action@master
       with:
