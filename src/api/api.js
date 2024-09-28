@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // 기본 설정
 const api = axios.create({
-  baseURL: 'http://localhost:8080', // API 기본 경로
+  baseURL: process.env.REACT_APP_API_URL, // API 기본 경로
   headers: {
     'Content-Type': 'application/json',
   },
