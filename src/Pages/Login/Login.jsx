@@ -3,7 +3,7 @@ import { authenticateUser } from '../../api/api.js';
 import Input from '../../UI/Input.jsx';
 import Button from '../../UI/Button.jsx';
 import { Heart, HeartHandshake } from 'lucide-react';
-import { GlobalStyle, BackGround, LoginContainer, LoginTitle, LoginForm, Signup, ErrorMessage } from './LoginStyle.jsx';
+import { GlobalStyle, BackGround, LoginContainer, LoginTitle, LoginForm, Signup, ErrorMessage, SlackLoginButton } from './LoginStyle.jsx';
 
 function Login() {
   const [id, setId] = useState('');
@@ -64,6 +64,7 @@ function Login() {
             <Button type="submit" onClick={handleLogin} disabled={loading}>
               {loading ? <HeartHandshake /> : <Heart />}
             </Button>
+            <SlackLoginButton/>
             <ErrorMessage visible={error !== null ? 'true' : 'false'}>
               {error}
             </ErrorMessage>
