@@ -81,7 +81,7 @@ const ErrorMessage = styled.div`
 const SlackLoginButton = () => {
   return (
     <a
-      href="https://slack.com/openid/connect/authorize?scope=openid%20email%20profile&amp;response_type=code&amp;redirect_uri=https%3A%2F%2Fcompliment-hub.site%2Fapi%2Flogin%2Foauth2%2Fcode%2Fslack&amp;client_id=7102032032211.7802787937170"
+      href="https://slack.com/openid/connect/authorize?scope=openid%20email%20profile&amp;response_type=code&amp;redirect_uri=https%3A%2F%2Fcompliment-hub.site%2Fapi%2Foauth2%2Fcallback%2Fslack&amp;client_id=7102032032211.7802787937170"
       style={{
         alignItems: 'center',
         color: '#000',
