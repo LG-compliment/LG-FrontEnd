@@ -213,7 +213,7 @@ function SignUp() {
     }, [showTooltip]);
 
     const clickBack = () => {
-        window.location.href = '/login';
+        window.location.href = '/';
     }
 
     const validateId = (id) => { 
@@ -280,7 +280,7 @@ function SignUp() {
         try {
             await signUp(id, password, name);
             alert('회원가입이 완료되었습니다!');
-            window.location.href = '/login';  // 로그인 페이지로 리다이렉트
+            window.location.href = '/';  // 로그인 페이지로 리다이렉트
         } catch (error) {
             console.error("Error signing up:", error);
             alert('회원가입 중 오류가 발생했습니다.');

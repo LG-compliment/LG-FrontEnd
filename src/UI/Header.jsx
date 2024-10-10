@@ -66,7 +66,7 @@ function Header() {
       // userId 또는 token이 없으면 로그인 페이지로 이동
       if (!userId || !token) {
         alert("로그인 정보가 없습니다. 다시 로그인해주세요.");
-        navigate('/login');
+        navigate('/');
         return;
       }
 
@@ -78,7 +78,7 @@ function Header() {
       } catch (error) {
         console.error("로그인 정보 요청 중 오류 발생:", error);
         alert("로그인 정보 요청 중 오류가 발생했습니다. 다시 시도해주세요.");
-        navigate('/login');
+        navigate('/');
       }
     };
 
@@ -87,9 +87,9 @@ function Header() {
 
   return (
     <HeaderContainer>
-      <Logo href='/'>COMPLIMENT HUB</Logo>
+      <Logo href='/home'>COMPLIMENT HUB</Logo>
       <NavContainer>
-        <StyledNavLink to='/'>Home</StyledNavLink>
+        <StyledNavLink to='/home'>Home</StyledNavLink>
         <StyledNavLink to='/compliments'>Compliment</StyledNavLink>
         <StyledNavLink to='/users'>User</StyledNavLink>
       </NavContainer>

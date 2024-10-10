@@ -61,7 +61,7 @@ function MyInfo({name}) { //로그인 정보에서 name get
   const logout = () => {
     sessionStorage.removeItem("userId");
     sessionStorage.removeItem("token");
-    navigate("/login");
+    navigate("/");
   }
   
   return (
