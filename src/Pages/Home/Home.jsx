@@ -148,11 +148,11 @@ const Home = () => {
         const loadArchievment = async() => {
             try {
                 setLoading(true);
-                const senders = await fetchSenderArchievement();
-                const receivers = await fetchReceiverArchievement();
+                const sendersResponse = await fetchSenderArchievement();
+                const receiversResponse = await fetchReceiverArchievement();
 
-                setSenders(senders.data.achievements);
-                setReceivers(receivers.data.achievements);
+                setSenders(sendersResponse.data?.achievements || []);
+                setReceivers(receiversResponse.data?.achievements || []);
             } catch (err) {
                 console.error('Error fetching archievement:', err);
                 setError('정보를 불러오는데 실패했습니다.')
@@ -182,7 +182,7 @@ const Home = () => {
                   <RankingIcon>{index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉'}</RankingIcon>
                   <RankingName>{item.userName}</RankingName>
                 </div>
-                <RankingCount>{item.complimentsCount}개</RankingCount>
+                <RankingCount>{item.complimentsCount || 0}개</RankingCount>
               </RankingItem>
             ))}
           </RankingList>
@@ -199,7 +199,7 @@ const Home = () => {
                   <RankingIcon>{index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉'}</RankingIcon>
                   <RankingName>{item.userName}</RankingName>
                 </div>
-                <RankingCount>{item.complimentsCount}개</RankingCount>
+                <RankingCount>{item.complimentsCount || 0}개</RankingCount>
               </RankingItem>
             ))}
           </RankingList>
