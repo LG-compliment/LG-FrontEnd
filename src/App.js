@@ -12,11 +12,11 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* 로그인 페이지 (헤더 없이 렌더링) */}
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
         {/* 로그인 페이지를 제외한 나머지 경로에 공통으로 헤더를 적용 */}
         <Route element={<WithHeader />}>
-          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/compliments" element={<ComplimentList />} />
           <Route path="/users" element={<UserList />} />
         </Route>
